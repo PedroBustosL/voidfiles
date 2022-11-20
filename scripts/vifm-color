@@ -1,0 +1,4 @@
+#!/bin/bash
+
+wget -P ~/.vifm/colors https://raw.githubusercontent.com/vifm/vifm-colors/master/"$1".vifm
+
