@@ -34,9 +34,6 @@ git clone https://github.com/void-linux/void-packages.git $HOME/pkgs
 sudo cp $HOME/voidfiles/lightdm/* /etc/lightdm/
 sudo sed -i "s/PLACEHOLDER/$(whoami)/" /etc/lightdm/lightdm-mini-greeter.conf
 
-########## BASHRC #####################
-cp $HOME/voidfiles/bashrc/.bashrc $HOME
-
 ########## CUSTOM SCRIPTS ####### 
 mkdir $HOME/scripts
 cp $HOME/voidfiles/scripts/* $HOME/scripts
