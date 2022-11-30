@@ -326,7 +326,6 @@ libpoppler
 libprotobuf
 libproxy
 libpsl
-libpulseaudio
 libqxp
 libraptor
 librasqal
@@ -990,7 +989,6 @@ libpoppler
 libprotobuf
 libproxy
 libpsl
-libpulseaudio
 libqxp
 libraptor
 librasqal
@@ -1162,8 +1160,6 @@ polkit
 poppler
 poppler-data
 procps-ng
-pulseaudio
-pulseaudio-utils
 python3
 python3-Jinja2
 python3-MarkupSafe

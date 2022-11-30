@@ -22,7 +22,7 @@ mkdir .config .config/herbstluftwm
 cp $HOME/voidfiles/herbswm/* $HOME/.config/herbstluftwm/
 sudo cp $HOME/voidfiles/scripts/scratchpad /usr/local/bin/
 sudo chmod +x /usr/local/bin/scratchpad
-cp $HOME/voidfiles/.bashrc $HOME/.bashrc
+cp $HOME/voidfiles/bashrc/.bashrc $HOME/.bashrc
 source $HOME/.bashrc
 
 
