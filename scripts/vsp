@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR1=$HOME/pkgs/void-packages/
+DIR1=$HOME/pkgs/void-packages
 DIR2=$HOME/pkgs/void-packages/srcpkgs
 
 cd "$DIR1" || exit

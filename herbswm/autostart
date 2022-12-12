@@ -15,9 +15,18 @@ hc keyunbind --all
 
 # AUTOSTART
 HCHOME=$HOME/.config/herbstluftwm/
-xrandr -s 1920x1080
-hc set_monitors 1920x1080
+max_res=$(xrandr | awk 'NR==3 {print $1}')
+current_res=$(xrandr | awk '/\*/ {print $1}')
+xrandr -s $max_res
+hc set_monitors $current_res
 xwallpaper --maximize $HCHOME/wallpapers/void.jpg
+brightnessctl s 100%
+light-locker &
+setxkbmap latam
+emacs --daemon
+clipmenud &
+# Panel
+sh $HOME/scripts/polybar.sh &
 
 # keybindings
 # if you have a super key you will be much happier with Mod set to Mod4
@@ -26,7 +35,7 @@ Mod=Mod4   # Use the super key as the main modifier
 
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-q close
-hc keybind $Mod-t spawn "${TERMINAL:-alacritty}" # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-t spawn "${TERMINAL:-qterminal}" # use your $TERMINAL with xterm as fallback
 
 # basic movement in tiling and floating mode
 # focusing clients
@@ -49,10 +58,23 @@ hc keybind $Mod-Shift-j     shift down
 hc keybind $Mod-Shift-k     shift up
 hc keybind $Mod-Shift-l     shift right
 
+
 # Custom keybinds
 hc keybind $Mod-b spawn qutebrowser
-hc keybind $Mod-space spawn dmenu_run
+hc keybind $Mod-space spawn rofi -show drun
 hc keybind $Mod-Return spawn scratchpad
+hc keybind Print spawn flameshot gui
+hc keybind XF86MonBrightnessUp spawn brightnessctl s +20%
+hc keybind XF86MonBrightnessDown spawn brightnessctl s 20%-
+hc keybind XF86AudioMute spawn amixer sset 'Master' toggle
+hc keybind XF86AudioLowerVolume spawn amixer sset 'Master' 10%-
+hc keybind XF86AudioRaiseVolume spawn amixer sset 'Master' 10%+
+hc keybind $Mod-Escape spawn light-locker-command -l
+hc keybind $Mod-e spawn emacsclient -c -a 'emacs'
+
+hc keybind $Mod-c spawn alacritty -t OpenFile -e sh $HOME/scripts/snippets.sh
+hc keybind $Mod-Shift-t spawn alacritty -t OpenFile -e sh $HOME/scripts/file_menu.sh
+
 
 # splitting frames
 # create an empty frame at the specified direction
@@ -117,25 +139,25 @@ hc mousebind $Mod-Button3 resize
 hc keybind $Mod-BackSpace   cycle_monitor
 hc keybind $Mod-Tab         cycle_all +1
 hc keybind $Mod-Shift-Tab   cycle_all -1
-hc keybind $Mod-c cycle
+#hc keybind $Mod-c cycle
 hc keybind $Mod-i jumpto urgent
 
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color '#222222cc'
+hc set frame_border_active_color '#28104f'
 hc set frame_border_normal_color '#101010cc'
 hc set frame_bg_normal_color '#565656aa'
 hc set frame_bg_active_color '#345F0Caa'
-hc set frame_border_width 1
+hc set frame_border_width 3
 hc set show_frame_decorations 'focused_if_multiple'
 hc set frame_bg_transparent on
 hc set frame_transparent_width 5
-hc set frame_gap 4
+hc set frame_gap 2
 
 hc attr theme.title_height 15
 hc attr theme.title_when always
-hc attr theme.title_font 'Dejavu Sans:pixelsize=12'  # example using Xft
+hc attr theme.title_font 'Hack Nerd Font:pixelsize=12'  # example using Xft
 # hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
 hc attr theme.title_depth 3  # space below the title's baseline
 hc attr theme.active.color '#345F0Cef'
@@ -175,6 +197,9 @@ hc unrule -F
 #hc rule class=XTerm tag=3 # move all xterms to tag 3
 hc rule focus=on # normally focus new clients
 hc rule floatplacement=smart
+hc rule class=qterminal tag=1
+hc rule class=Firefox tag=2
+hc rule class=qutebrowser tag=2
 #hc rule focus=off # normally do not focus new clients
 # give focus to most common terminals
 #hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
@@ -182,6 +207,7 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc rule fixedsize floating=on
+hc rule title~'OpenFile' floating=on floatplacement=center floating_geometry=375x200
 
 hc set tree_style '╾│ ├└╼─┐'
 
@@ -194,9 +220,10 @@ hc unlock
 # hc detect_monitors
 
 # find the panel
-panel=~/.config/herbstluftwm/panel.sh
-[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
-for monitor in $(hc list_monitors | cut -d: -f1) ; do
+#panel=~/.config/herbstluftwm/panel.sh
+#[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
+#for monitor in $(hc list_monitors | cut -d: -f1) ; do
     # start it on each monitor
-    "$panel" "$monitor" &
+ #   "$panel" "$monitor" &
+
 done
