@@ -25,6 +25,7 @@ light-locker &
 setxkbmap latam
 emacs --daemon
 clipmenud &
+sh $HOME/scripts/update-repos.sh
 # Panel
 sh $HOME/scripts/polybar.sh &
 
