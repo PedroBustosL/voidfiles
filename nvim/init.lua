@@ -44,6 +44,7 @@ vim.g.maplocalleader = ' '
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -284,6 +285,38 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- Load custom treesitter grammar for org filetype
+require('orgmode').setup_ts_grammar()
+
+require('orgmode').setup({
+  org_agenda_files = {'~/org/*'},
+  org_default_notes_file = '~/org/STAS.org',
+  org_custom_exports = {
+    o = {
+      label = 'Export to ODT format',
+      action = function(exporter)
+        local current_file = vim.api.nvim_buf_get_name(0)
+        local target = vim.fn.fnamemodify(current_file, ':p:r')..'.odt'
+        local command = {'pandoc', current_file, '-o', target}
+        local on_success = function(output)
+          print('Success!')
+          vim.api.nvim_echo({{ table.concat(output, '\n') }}, true, {})
+        end
+        local on_error = function(err)
+          print('Error!')
+          vim.api.nvim_echo({{ table.concat(err, '\n'), 'ErrorMsg' }}, true, {})
+        end
+        return exporter(command , target, on_success, on_error)
+      end
+    }
+  },
+  mappings = {
+    org = {
+      org_toggle_checkbox = '<Leader>ot'
+    }
+  }
+})
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
@@ -326,12 +359,15 @@ vim.keymap.set('n', '<leader>wf', ':w<cr>', {desc='[W]rite [F]ile'})
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'org' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
 
-  highlight = { enable = true },
+  highlight = { 
+    enable = true,
+    additional_vim_regex_highlighting = {'org'},
+  },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {
     enable = true,
@@ -528,6 +564,7 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'orgmode' },
   },
 }
 
