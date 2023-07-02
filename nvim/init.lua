@@ -290,7 +290,7 @@ require('orgmode').setup_ts_grammar()
 
 require('orgmode').setup({
   org_agenda_files = {'~/org/*'},
-  org_default_notes_file = '~/org/STAS.org',
+  org_default_notes_file = '~/org/notas.org',
   org_custom_exports = {
     o = {
       label = 'Export to ODT format',
@@ -354,6 +354,9 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>n', ':Neotree toggle=true<cr>', {desc = 'Toggle [N]vim-tree'})
 vim.keymap.set('n', '<leader>wf', ':w<cr>', {desc='[W]rite [F]ile'})
+vim.keymap.set({'n', 'v'}, '<leader>rl', ':SnipRun<cr>', {desc='[R]un [L]ine'})
+vim.keymap.set('v', '<leader>rb', ":'<,'>SnipRun<cr>", {desc='[R]un [B]lock'})
+vim.keymap.set('n', '<leader>tf', ':Neorg tangle<cr>', {desc='[T]angle [F]ile'})
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
