@@ -194,6 +194,12 @@ require('lazy').setup({
     end,
   },
 
+  -- File browser telescope
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  },
+
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -217,10 +223,6 @@ require('lazy').setup({
   { import = 'custom.plugins' },
 }, {})
 
-vim.api.nvim_create_autocmd('VimEnter', {
-  -- command = "NvimTreeOpen"
-  command = "Neotree action=show reveal_force_cwd"
-})
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -328,12 +330,26 @@ require('telescope').setup {
       },
     },
   },
+  extensions = {
+    file_browser = {
+      theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
+  },
 }
-
--- require('nvim-tree').setup()
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+pcall(require("telescope").load_extension, "file_browser")
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -352,7 +368,7 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>n', ':Neotree toggle=true<cr>', {desc = 'Toggle [N]vim-tree'})
+vim.keymap.set('n', '<leader>fb', ':Telescope file_browser<cr>', { desc = '[F]ile [B]rowser' })
 vim.keymap.set('n', '<leader>wf', ':w<cr>', {desc='[W]rite [F]ile'})
 vim.keymap.set({'n', 'v'}, '<leader>rl', ':SnipRun<cr>', {desc='[R]un [L]ine'})
 vim.keymap.set('v', '<leader>rb', ":'<,'>SnipRun<cr>", {desc='[R]un [B]lock'})
@@ -375,8 +391,8 @@ require('nvim-treesitter.configs').setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
+      init_selection = '<C-n>',
+      node_incremental = '<C-n>',
       scope_incremental = '<c-s>',
       node_decremental = '<M-space>',
     },
