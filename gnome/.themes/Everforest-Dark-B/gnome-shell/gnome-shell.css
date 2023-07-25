@@ -2853,12 +2853,11 @@ StEntry StLabel.hint-text,
 }
 
 .quick-toggle {
-  border-radius: 8px;
+  border-radius: 99px;
   min-width: 12em;
   max-width: 12em;
-  min-height: 40px;
+  min-height: 48px;
   border: none;
-  border: 1px solid rgba(255, 249, 232, 0.2);
   background-color: rgba(255, 249, 232, 0.08) !important;
 }
 
@@ -2873,6 +2872,7 @@ StEntry StLabel.hint-text,
 .quick-toggle:checked {
   background-color: #859289 !important;
   color: rgba(0, 0, 0, 0.87);
+  border: none;
 }
 
 .quick-toggle:checked:hover {
@@ -2886,7 +2886,7 @@ StEntry StLabel.hint-text,
 }
 
 .quick-toggle > StBoxLayout {
-  spacing: 6px;
+  spacing: 9px;
   padding: 0 12px;
 }
 
@@ -2919,22 +2919,78 @@ StEntry StLabel.hint-text,
   padding-left: 0;
 }
 
+.quick-menu-toggle .quick-toggle {
+  min-width: auto;
+  max-width: auto;
+}
+
+.quick-menu-toggle .quick-toggle:ltr {
+  border-radius: 99px 0 0 99px;
+}
+
+.quick-menu-toggle .quick-toggle:ltr > StBoxLayout {
+  padding-right: 9px;
+}
+
+.quick-menu-toggle .quick-toggle:rtl {
+  border-radius: 0 99px 99px 0;
+}
+
+.quick-menu-toggle .quick-toggle:rtl > StBoxLayout {
+  padding-left: 9px;
+}
+
+.quick-menu-toggle .quick-toggle:rtl:last-child {
+  border-radius: 99px;
+}
+
+.quick-menu-toggle .quick-toggle:ltr:last-child {
+  border-radius: 99px;
+}
+
 .quick-menu-toggle .quick-toggle-arrow {
+  /* background-color: rgba(255, 249, 232, 0.08) !important; */
   background-color: rgba(255, 249, 232, 0.08) !important;
   padding: 6px 10.5px;
+  border-width: 0;
   icon-size: 16px !important;
 }
 
 .quick-menu-toggle .quick-toggle-arrow:active {
+  background-color: rgba(255, 249, 232, 0.15) !important;
+}
+
+.quick-toggle .quick-toggle-arrow:hover {
   background-color: rgba(255, 249, 232, 0.12) !important;
 }
 
+.quick-menu-toggle .quick-toggle-arrow:checked {
+  background-color: #7a8478 !important;
+  color: rgba(0, 0, 0, 0.87);
+  border-color: #7a8478;
+}
+
+.quick-menu-toggle .quick-toggle-arrow:checked:active {
+  background-color: #bec5b2 !important;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.quick-menu-toggle .quick-toggle-arrow:checked:hover {
+  background-color: #9da9a0 !important;
+  color: #2b3339;
+}
+
 .quick-menu-toggle .quick-toggle-arrow:ltr {
-  border-radius: 0 6px 6px 0;
+  /* border-radius: 0 6px 6px 0; */
+  border-radius: 0 99px 99px 0;
+  border-left-width: 1px;
+
 }
 
 .quick-menu-toggle .quick-toggle-arrow:rtl {
-  border-radius: 6px 0 0 6px;
+  /* border-radius: 6px 0 0 6px; */
+  border-radius: 99px 0 0 99px;
+  border-right-width: 1px;
 }
 
 .quick-slider {
