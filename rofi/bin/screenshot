@@ -13,34 +13,34 @@ icon2="$HOME/.config/dunst/icons/timer.svg"
 # Buttons
 layout=`cat $HOME/.config/rofi/config/screenshot.rasi | grep BUTTON | cut -d'=' -f2 | tr -d '[:blank:],*/'`
 if [[ "$layout" == "TRUE" ]]; then
-	screen=""
-	area=""
-	window="缾"
-	infive="靖"
-	inten="福"
+	screen=""
+	area="󰩬"
+	window=""
+	infive="󱇹"
+	inten="󰴪"
 else
-	screen=" Capture Desktop"
-	area=" Capture Area"
-	window="缾 Capture Window"
-	infive="靖 Take in 3s"
-	inten="福 Take in 10s"
+	screen="  Escritorio"
+	area="󰩬  Area"
+	window="  Ventana"
+	infive="󰔝  En 3s"
+	inten="󰔜  En 10s"
 fi
 
 # Notify and view screenshot
 notify_view () {
-	dunstify -u low --replace=699 -i $icon1 "Copied to clipboard."
+	dunstify -u low --replace=699 -i $icon1 "Copiado al portapapeles."
 	viewnior ${dir}/"$file"
 	if [[ -e "$dir/$file" ]]; then
-		dunstify -u low --replace=699 -i $icon1 "Screenshot Saved."
+		dunstify -u low --replace=699 -i $icon1 "Captura Guardada."
 	else
-		dunstify -u low --replace=699 -i $icon1 "Screenshot Deleted."
+		dunstify -u low --replace=699 -i $icon1 "Caputra Eliminada."
 	fi
 }
 
 # countdown
 countdown () {
 	for sec in `seq $1 -1 1`; do
-		dunstify -t 1000 --replace=699 -i $icon2 "Taking shot in : $sec"
+		dunstify -t 1000 --replace=699 -i $icon2 "Capturando en : $sec"
 		sleep 1
 	done
 }
@@ -80,7 +80,7 @@ fi
 # Variable passed to rofi
 options="$screen\n$area\n$window\n$infive\n$inten"
 
-chosen="$(echo -e "$options" | $rofi_command -p 'Take A Shot' -dmenu -selected-row 0)"
+chosen="$(echo -e "$options" | $rofi_command -p 'Capturar Pantalla' -dmenu -selected-row 0)"
 case $chosen in
     $screen)
 		shotnow
