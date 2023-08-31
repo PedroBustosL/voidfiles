@@ -96,10 +96,12 @@ primary_widgets = [
 
     powerline('color3', 'color4'),
 
-    icon(bg="color3", text=' '),  # Icon: nf-fa-feed
-    # icon(bg="color1", text='󰛳 '),  # Icon: nf-md-network
+    icon(bg="color3", text=" "),  # Icon: nf-fa-hdd_o
+    # icon(bg="color3", text=' '),  # Icon: nf-fa-feed
+    # icon(bg="color3", text='󰛳 '),  # Icon: nf-md-network
     
-    widget.Net(**base(bg='color3'), interface='wlp1s0'),
+    # widget.Net(**base(bg='color3'), interface='wlp1s0'),
+    widget.DF(**base(bg="color3"), visible_on_warn=False, warn_color="e67e80", warn_space=2),
 
     powerline('color1', 'color3'),
 
