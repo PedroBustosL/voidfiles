@@ -15,8 +15,12 @@ nm-applet &
 # Resolution
 xrandr -s 1920x1080
 # Keyboard layout
-setxkbmap latam
+# setxkbmap latam
 # Emacs daemon
 emacs --daemon
 # Wallpaper
 nitrogen --restore
+# bluetooth
+blueman-applet &
+# Compositor
+picom &

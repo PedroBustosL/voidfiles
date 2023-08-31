@@ -4,7 +4,7 @@
 
 # Qtile workspaces
 
-from libqtile.config import Key, Group
+from libqtile.config import Key, Group, ScratchPad, DropDown
 from libqtile.command import lazy
 from .keys import mod, keys
 
@@ -20,11 +20,25 @@ from .keys import mod, keys
 # nf-mdi-image, 
 # nf-mdi-layers
 
-groups = [Group(i) for i in [
-    "   ", "   ", "   ", "   ", "  ", "   ", " 󰉋  ", "   ", " 󰌨  ",
-]]
+# groups = [ Group(i) for i in [
+# "   ", "   ", "   ", "   ", "  ", "   ", " 󰉋  ", "   ", " 󰌨  ",
+# ]]
 
-for i, group in enumerate(groups):
+groups = [ ScratchPad('scratchpad', [
+                          DropDown('tilix', 'tilix', opacity=0.8),
+                          DropDown('iotas', 'flatpak run org.gnome.gitlab.cheywood.Iotas', opacity=0.9)]),
+           Group('  '),
+           Group('  '),
+           Group('  '),
+           Group('  '),
+           Group('  '),
+           Group('  '),
+           Group(' 󰉋 '),
+           Group('  '),
+           Group(' 󰌨 '),
+          ]
+
+for i, group in enumerate(groups[1:]):
     actual_key = str(i + 1)
     keys.extend([
         # Switch to workspace N

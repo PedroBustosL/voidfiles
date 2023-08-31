@@ -2,6 +2,7 @@ from libqtile import widget, qtile
 from .theme import colors
 
 # Get the icons at https://www.nerdfonts.com/cheat-sheet (you need a Nerd Font)
+
 def open_calendar(qtile):
    qtile.cmd_spawn('gsimplecal')
 
@@ -93,31 +94,27 @@ primary_widgets = [
         custom_command='xbps-install -nuMS',
     ),
 
-    powerline('color1', 'color4'),
+    powerline('color3', 'color4'),
 
-    # icon(bg="color3", text=' '),  # Icon: nf-fa-feed
-    icon(bg="color1", text='󰛳 '),  # Icon: nf-md-network
+    icon(bg="color3", text=' '),  # Icon: nf-fa-feed
+    # icon(bg="color1", text='󰛳 '),  # Icon: nf-md-network
     
-    widget.Net(**base(bg='color1'), interface='enp0s3'),
+    widget.Net(**base(bg='color3'), interface='wlp1s0'),
 
-    powerline('color3', 'color1'),
-
-    widget.Bluetooth(**base(bg='color3'), mouse_callbacks={'Button1': lambda: qtile.cmd_spawn('blueman')}),
-
-    powerline('color2', 'color3'),
-
-    widget.CurrentLayoutIcon(**base(bg='color2'), scale=0.65),
-
-    # widget.CurrentLayout(**base(bg='color2'), padding=5),
-
-    powerline('color1', 'color2'),
+    powerline('color1', 'color3'),
 
     icon(bg="color1", fontsize=17, text='󰃰 '), # Icon: nf-mdi-calendar_clock
 
     widget.Clock(**base(bg='color1'), mouse_callbacks = {'Button1': lambda:
                                                          qtile.cmd_function(open_calendar), 'Button3': lambda: qtile.cmd_function(close_calendar)},format='%d/%m/%Y - %H:%M '),
 
-    powerline('dark', 'color1'),
+    powerline('color2', 'color1'),
+
+    widget.CurrentLayoutIcon(**base(bg='color2'), scale=0.65),
+
+    # widget.CurrentLayout(**base(bg='color2'), padding=5),
+
+    powerline('dark', 'color2'),
 
     widget.Systray(background=colors['dark'], padding=5),
 ]

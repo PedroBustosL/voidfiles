@@ -15,6 +15,8 @@ mod = "mod4"
 keys = [Key(key[0], key[1], *key[2:]) for key in [
     # ------------ Window Configs ------------
 
+    # ScratchPads
+    ([mod], "t", lazy.group["scratchpad"].dropdown_toggle('tilix')),
     # Switch between windows in current stack pane
     ([mod], "j", lazy.layout.down()),
     ([mod], "k", lazy.layout.up()),
