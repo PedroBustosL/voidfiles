@@ -110,7 +110,13 @@ primary_widgets = [
     widget.Clock(**base(bg='color1'), mouse_callbacks = {'Button1': lambda:
                                                          qtile.cmd_function(open_calendar), 'Button3': lambda: qtile.cmd_function(close_calendar)},format='%d/%m/%Y - %H:%M '),
 
-    powerline('color2', 'color1'),
+    powerline('color5', 'color1'),
+
+    icon(bg="color5", text="󰃞 "),  # Icon: nf-md-brigthness-5
+
+    widget.Backlight(**base(bg='color5'), backlight_name='amdgpu_bl0'),
+
+    powerline('color2', 'color5'),
 
     widget.CurrentLayoutIcon(**base(bg='color2'), scale=0.65),
 
