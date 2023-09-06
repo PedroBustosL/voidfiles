@@ -35,7 +35,7 @@ groups = [ ScratchPad('scratchpad', [
            Group('  '),
            Group(' 󰉋 '),
            Group('  '),
-           Group(' 󰌨 '),
+           Group(' 󰌨 ', layout="floating_layout"),
           ]
 
 for i, group in enumerate(groups[1:]):
