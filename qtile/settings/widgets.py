@@ -103,6 +103,18 @@ primary_widgets = [
     # widget.Net(**base(bg='color3'), interface='wlp1s0'),
     widget.DF(**base(bg="color3"), visible_on_warn=False, warn_color="e67e80", warn_space=2),
 
+    widget.Sep(**base(bg="color3"), linewidth=0, padding=5),
+
+    icon(bg="color3", text=" "),  # Icon: nf-fae-chip
+
+    widget.Memory(**base(bg="color3")),  # , measure_mem='G'
+
+    widget.Sep(**base(bg="color3"), linewidth=0, padding=5),
+
+    icon(bg="color3", text=" "),  # Icon: nf-oct-cpu
+
+    widget.CPU(**base(bg="color3"), format='{freq_current}GHz {load_percent}%'),
+
     powerline('color1', 'color3'),
 
     icon(bg="color1", fontsize=17, text='󰃰 '), # Icon: nf-mdi-calendar_clock
