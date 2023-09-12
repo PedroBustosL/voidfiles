@@ -52,6 +52,8 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     # ------------ App Configs ------------
 
+    # LockScreen
+    ([mod], "Escape", lazy.spawn("betterlockscreen -l")),
     # Menu
     # ([mod], "m", lazy.spawn("rofi -show drun")),
     ([mod], "m", lazy.spawn(os.path.expanduser("~/.config/rofi/bin/launcher"))),

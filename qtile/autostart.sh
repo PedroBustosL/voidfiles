@@ -24,3 +24,9 @@ nitrogen --restore
 blueman-applet &
 # Compositor
 picom &
+
+# Betterblockscreen
+if [ ! -e $HOME/.cache/betterlockscreen ]
+then
+   betterlockscreen -u $HOME/voidfiles/images/
+fi
