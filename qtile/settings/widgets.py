@@ -92,7 +92,7 @@ primary_widgets = [
         display_format='{updates}',
         update_interval=1800,
         custom_command='xbps-install -nuMS',
-        execute='tilix -e sudo xbps-install -Suv && qtile cmd-obj -o widget checkupdates -f force update',
+        execute='tilix -e sudo xbps-install -Suv && qtile cmd-obj -o widget checkupdates -f force_update',
     ),
 
     powerline('color3', 'color4'),
