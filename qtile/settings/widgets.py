@@ -86,6 +86,7 @@ primary_widgets = [
     widget.CheckUpdates(
         distro='Void',
         background=colors['color4'],
+        foreground=colors['text'],
         colour_have_updates=colors['text'],
         colour_no_updates=colors['text'],
         no_update_string='0',
@@ -93,6 +94,7 @@ primary_widgets = [
         update_interval=1800,
         custom_command='xbps-install -nuMS',
         execute='tilix -e sudo xbps-install -Suv && qtile cmd-obj -o widget checkupdates -f force_update',
+        initial_text = '󰇘',
     ),
 
     powerline('color3', 'color4'),
