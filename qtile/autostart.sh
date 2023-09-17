@@ -14,8 +14,6 @@ udiskie -t &
 nm-applet &
 # Resolution
 xrandr -s 1920x1080
-# Keyboard layout
-# setxkbmap latam
 # Emacs daemon
 emacs --daemon
 # Wallpaper

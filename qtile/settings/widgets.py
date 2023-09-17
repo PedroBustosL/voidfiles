@@ -139,7 +139,7 @@ primary_widgets = [
 
     powerline('color4', 'color2'),
 
-    widget.KeyboardLayout(**base(bg='color4'), configured_keyboards=["us", "us dvorak", "latam"], display_map={"us":"US", "us dvorak":"DVK", "latam":"LAT"}),
+    widget.KeyboardLayout(**base(bg='color4'), configured_keyboards=["latam", "us dvorak", "us"], display_map={"us":"US", "us dvorak":"DVK", "latam":"LAT"}),
 
     powerline('dark', 'color4'),
 
