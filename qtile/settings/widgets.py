@@ -137,7 +137,11 @@ primary_widgets = [
 
     # widget.CurrentLayout(**base(bg='color2'), padding=5),
 
-    powerline('dark', 'color2'),
+    powerline('color4', 'color2'),
+
+    widget.KeyboardLayout(**base(bg='color4'), configured_keyboards=["us", "us dvorak", "latam"], display_map={"us":"US", "us dvorak":"DVK", "latam":"LAT"}),
+
+    powerline('dark', 'color4'),
 
     widget.Systray(background=colors['dark'], padding=5),
 ]

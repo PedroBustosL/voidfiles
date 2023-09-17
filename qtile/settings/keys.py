@@ -52,6 +52,8 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     # ------------ App Configs ------------
 
+    # Keyboard Layout Switcher
+    ([mod], "space", lazy.widget["keyboardlayout"].next_keyboard()),
     # LockScreen
     ([mod], "Escape", lazy.spawn("betterlockscreen -l")),
     # Menu
