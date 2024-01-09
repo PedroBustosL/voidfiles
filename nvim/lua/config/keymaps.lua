@@ -44,3 +44,12 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 keymap.set("n", "<C-j>", function()
   vim.diagnostic.goto_next()
 end, opts)
+
+-- Tokens STAS
+keymap.set(
+  "n",
+  "<leader>tq",
+  "<cmd>!pwsh.exe C:\\Users\\PedroAdrianoBustosLa\\token-qa.ps1<cr>",
+  { desc = "Call token file with default values" }
+)
+keymap.set("n", "<leader>t.", "<cmd>Exec<cr>", { desc = "Execute current ps1 file" })

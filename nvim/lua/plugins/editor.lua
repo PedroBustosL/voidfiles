@@ -56,7 +56,7 @@ return {
       {
         "fr",
         function()
-          local builtin = require("")
+          local builtin = require("telescope.builtin")
           builtin.resume()
         end,
         desc = "Resume the previous telescope picker",
@@ -98,6 +98,14 @@ return {
           })
         end,
         desc = "Open File Browser with the path of the current buffer",
+      },
+      {
+        "<leader>gb",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.git_branches()
+        end,
+        desc = "Git Branches",
       },
     },
     config = function(_, opts)

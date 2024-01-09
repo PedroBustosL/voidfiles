@@ -42,7 +42,7 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        theme = "everforest",
+        theme = "gruvbox-material",
       },
     },
   },
