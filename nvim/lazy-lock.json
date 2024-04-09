@@ -23,6 +23,7 @@
   "nvim-treesitter": { "branch": "master", "commit": "70f03829afa31f8b619b56296cdcaa921118d912" },
   "nvim-ts-autotag": { "branch": "main", "commit": "531f48334c422222aebc888fd36e7d109cb354cd" },
   "nvim-web-devicons": { "branch": "master", "commit": "4adea17610d140a99c313e3f79a9dc01825d59ae" },
+  "oil.nvim": { "branch": "master", "commit": "32e18df30f937e02135398c270b72a4d24b40120" },
   "omnisharp-vim": { "branch": "master", "commit": "f9c5d3e3375e8b5688a4506e813cb21bdc7329b1" },
   "plenary.nvim": { "branch": "master", "commit": "4f71c0c4a196ceb656c824a70792f3df3ce6bb6d" },
   "rose-pine": { "branch": "main", "commit": "a29b09d15a9ef5cd575fbe5ae2a3cfb854876caf" },

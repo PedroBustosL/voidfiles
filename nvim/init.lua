@@ -1,88 +1,9 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-========                                    .-----.          ========
-========         .----------------------.   | === |          ========
-========         |.-""""""""""""""""""-.|   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||   KICKSTART.NVIM   ||   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||                    ||   |-----|          ========
-========         ||:Tutor              ||   |:::::|          ========
-========         |'-..................-'|   |____o|          ========
-========         `"")----------------(""`   ___________      ========
-========        /::::::::::|  |::::::::::\  \ no mouse \     ========
-========       /:::========|  |==hjkl==:::\  \ required \    ========
-========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
-========                                                     ========
-=====================================================================
-=====================================================================
-
-What is Kickstart?
-
-  Kickstart.nvim is *not* a distribution.
-
-  Kickstart.nvim is a starting point for your own configuration.
-    The goal is that you can read every line of code, top-to-bottom, understand
-    what your configuration is doing, and modify it to suit your needs.
-
-    Once you've done that, you can start exploring, configuring and tinkering to
-    make Neovim your own! That might mean leaving kickstart just the way it is for a while
-    or immediately breaking it into modular pieces. It's up to you!
-
-    If you don't know anything about Lua, I recommend taking some time to read through
-    a guide. One possible example which will only take 10-15 minutes:
-      - https://learnxinyminutes.com/docs/lua/
-
-    After understanding a bit more about Lua, you can use `:help lua-guide` as a
-    reference for how Neovim integrates Lua.
-    - :help lua-guide
-    - (or HTML version): https://neovim.io/doc/user/lua-guide.html
-
-Kickstart Guide:
-
-  TODO: The very first thing you should do is to run the command `:Tutor` in Neovim.
-
-    If you don't know what this means, type the following:
-      - <escape key>
-      - :
-      - Tutor
-      - <enter key>
-
-    (If you already know how the Neovim basics, you can skip this step)
-
-  Once you've completed that, you can continue working through **AND READING** the rest
-  of the kickstart init.lua
-
-  Next, run AND READ `:help`.
-    This will open up a help window with some basic information
-    about reading, navigating and searching the builtin help documentation.
-
-    This should be the first place you go to look when you're stuck or confused
-    with something. It's one of my favorite neovim features.
-
-    MOST IMPORTANTLY, we provide a keymap "<space>sh" to [s]earch the [h]elp documentation,
-    which is very useful when you're not sure exactly what you're looking for.
-
-  I have left several `:help X` comments throughout the init.lua
-    These are hints about where to find more information about the relevant settings,
-    plugins or neovim features used in kickstart.
-
-   NOTE: Look for lines like this
-
-    Throughout the file. These are for you, the reader, to help understand what is happening.
-    Feel free to delete them once you know what you're doing, but they should serve as a guide
-    for when you are first encountering a few different constructs in your nvim config.
-
-If you experience any errors while trying to install kickstart, run `:checkhealth` for more info
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now! :)
---]]
+-- Globales
+PROYECTO = {
+  Web = 'D:\\PROYECTO\\Web\\',
+  Api = 'D:\\PROYECTO\\Api\\',
+  Common = 'D:\\PROYECTO\\',
+}
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -145,7 +66,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = false
+vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
@@ -170,6 +91,8 @@ if jit.os == 'Linux' then
   vim.keymap.set("n", "<leader>t.", "<cmd>Exec<cr>", { desc = "Execute current bash file" })
 end
 
+-- Toggle git blame line
+vim.keymap.set("n", "<leader>gl", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "Toggle [G]it [L]ine blame" })
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -233,6 +156,16 @@ vim.keymap.set('n', '<C-w><down>', '<C-w>-')
 
 -- Buffers
 vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to other buffer' })
+
+-- [[ Git commands ]]
+-- Enter git diff split
+vim.keymap.set('n', '<leader>gd', '<cmd>Gvdiffsplit!<CR>', { desc = '[G]it [D]iff' })
+-- Enter Git Fugitive
+vim.keymap.set('n', '<leader>gg', '<cmd>G<CR>', { desc = '[G]it'})
+
+-- Gitsigns
+vim.keymap.set('n', ']h', '<cmd>Gitsigns next_hunk<CR>', { desc = 'Next Git [H]unk' })
+vim.keymap.set('n', '[h', '<cmd>Gitsigns prev_hunk<CR>', { desc = 'Previous Git [H]unk' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -474,6 +407,54 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      -- Shorcut for searching web projects
+      vim.keymap.set('n', '<leader>saw', function()
+          local telescope = require("telescope")
+
+          telescope.extensions.file_browser.file_browser({
+            path = PROYECTO.Web,
+            cwd = PROYECTO.Web,
+            respect_gitignore = false,
+            hidden = true,
+            grouped = true,
+            previewer = true,
+            initial_mode = "insert",
+            layout_config = { height = 40 },
+          })
+      end, { desc = '[S]earch [A]ndesmed [W]eb' })
+
+      -- Shorcut for searching Api projects
+      vim.keymap.set('n', '<leader>saa', function()
+          local telescope = require("telescope")
+
+          telescope.extensions.file_browser.file_browser({
+            path = PROYECTO.Api,
+            cwd = PROYECTO.Api,
+            respect_gitignore = false,
+            hidden = true,
+            grouped = true,
+            previewer = true,
+            initial_mode = "insert",
+            layout_config = { height = 40 },
+          })
+      end, { desc = '[S]earch [A]ndesmed [A]pi' })
+
+      -- Shorcut for searching common projects
+      vim.keymap.set('n', '<leader>sac', function()
+          local telescope = require("telescope")
+
+          telescope.extensions.file_browser.file_browser({
+            path = PROYECTO.Common,
+            cwd = PROYECTO.Common,
+            respect_gitignore = false,
+            hidden = true,
+            grouped = true,
+            previewer = true,
+            initial_mode = "insert",
+            layout_config = { height = 40 },
+          })
+      end, { desc = '[S]earch [A]ndesmed [C]ommon' })
     end,
   },
 
