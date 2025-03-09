@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+cd ~
 sudo xbps-install -Suvy
 
 sudo xbp-install -vy void-repo-nonfree curl wget xz unzip zip gptfdisk xtools mtools mlocate ntfs-3g fuse-exfat bash-completion linux-headers gtksourceview4 ffmpeg mesa-vdpau mesa-vaapi
@@ -9,7 +10,6 @@ sudo xbps-install -vy xorg i3
 git clone https://github.com/fairyglade/ly
 cd ly
 zig build
-zig build run
 zig build installrunit
 sudo unlink /var/service/agetty-tty2
 sudo ln -s /etc/sv/ly /var/service/
