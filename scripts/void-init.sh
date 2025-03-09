@@ -7,7 +7,8 @@ sudo xbps-install -vy void-repo-nonfree curl wget xz unzip zip gptfdisk xtools m
 sudo xbps-install -vy autoconf automake bison m4 make libtool flex meson ninja optipng sassc zig base-devel pam-devel libxcb-devel
 
 sudo xbps-install -vy xorg i3
-git clone https://codeberg.org/AnErrupTion/ly.gitcd ly
+git clone https://codeberg.org/AnErrupTion/ly.git
+cd ly
 zig build
 zig build installrunit
 sudo unlink /var/service/agetty-tty2
