@@ -49,7 +49,7 @@ sudo chmod +x etc/sv/psd/*
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-sudo xbps-install -S zoxide ripgrep dust flatpak thunar
+sudo xbps-install -S zoxide ripgrep dust flatpak Thunar
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 sudo xbps-install -vy intel-ucode 
