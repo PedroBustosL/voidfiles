@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd ~
+cd $HOME
 sudo xbps-install -Suvy
 
 sudo xbps-install -vy void-repo-nonfree curl wget xz unzip zip gptfdisk xtools mtools mlocate ntfs-3g fuse-exfat bash-completion linux-headers gtksourceview4 ffmpeg mesa-vdpau mesa-vaapi
@@ -13,6 +13,7 @@ zig build
 zig build installrunit
 sudo unlink /var/service/agetty-tty2
 sudo ln -s /etc/sv/ly /var/service/
+cd $HOME
 
 sudo xbps-install -vy xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils
 
