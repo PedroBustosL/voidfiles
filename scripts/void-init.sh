@@ -7,8 +7,7 @@ sudo xbps-install -vy void-repo-nonfree curl wget xz unzip zip gptfdisk xtools m
 sudo xbps-install -vy autoconf automake bison m4 make libtool flex meson ninja optipng sassc zig base-devel pam-devel libxcb-devel
 
 sudo xbps-install -vy xorg i3
-git clone https://github.com/fairyglade/ly
-cd ly
+git clone https://codeberg.org/AnErrupTion/ly.gitcd ly
 zig build
 zig build installrunit
 sudo unlink /var/service/agetty-tty2
@@ -34,7 +33,7 @@ sudo ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pip
 sudo xbps-install -vy tlp tlp-rdw powertop
 sudo ln -sv /etc/sv/tlp /var/service
 
-sudo xbps-instal -vy librewolf mpv
+sudo xbps-install -vy librewolf mpv
 
 sudo xbps-install -vy socklog-void
 sudo ln -s /etc/sv/socklog-unix /var/service/
