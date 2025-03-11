@@ -6,7 +6,7 @@ sudo xbps-install -Suvy
 sudo xbps-install -vy void-repo-nonfree curl wget xz unzip zip gptfdisk xtools mtools mlocate ntfs-3g fuse-exfat bash-completion linux-headers gtksourceview4 ffmpeg mesa-vdpau mesa-vaapi
 sudo xbps-install -vy autoconf automake bison m4 make libtool flex meson ninja optipng sassc zig base-devel pam-devel libxcb-devel
 
-sudo xbps-install -vy xorg i3 lightdm
+sudo xbps-install -vy xorg i3 lightdm ligthdm-mini-greeter
 # git clone https://codeberg.org/AnErrupTion/ly.git
 # cd ly
 # zig build
