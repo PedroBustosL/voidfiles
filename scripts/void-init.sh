@@ -6,14 +6,19 @@ sudo xbps-install -Suvy
 sudo xbps-install -vy void-repo-nonfree curl wget xz unzip zip gptfdisk xtools mtools mlocate ntfs-3g fuse-exfat bash-completion linux-headers gtksourceview4 ffmpeg mesa-vdpau mesa-vaapi
 sudo xbps-install -vy autoconf automake bison m4 make libtool flex meson ninja optipng sassc zig base-devel pam-devel libxcb-devel
 
-sudo xbps-install -vy xorg i3
-git clone https://codeberg.org/AnErrupTion/ly.git
-cd ly
-zig build
-zig build installrunit
-sudo unlink /var/service/agetty-tty2
-sudo ln -s /etc/sv/ly /var/service/
-cd $HOME
+sudo xbps-install -vy xorg i3 lightdm
+# git clone https://codeberg.org/AnErrupTion/ly.git
+# cd ly
+# zig build
+# zig build installrunit
+# sudo unlink /var/service/agetty-tty2
+# sudo ln -s /etc/sv/ly /var/service/
+# cd $HOME
+sudo mkdir -p /etc/lightdm/images/
+sudo cp $HOME/voidfiles/images/space-void.jpg /etc/ligthdm/images/background.jpg
+sudo cp voidfiles/lightdm/lightdm.conf /etc/lightdm
+sudo cp voidfiles/lightdm/lightdm-mini-greeter.conf /etc/lightdm
+sudo ln -s /etc/sv/lightdm /var/service/
 
 sudo xbps-install -vy xdg-desktop-portal xdg-desktop-portal-gtk xdg-user-dirs xdg-user-dirs-gtk xdg-utils
 
@@ -52,8 +57,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 sudo xbps-install -S zoxide ripgrep dust flatpak Thunar
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-sudo xbps-install -vy intel-ucode 
-linuxKernel=$(xbps-query -l | grep linux- | awk 'NR==1 {print $2}')
-sudo xbps-reconfigure -f $linuxKernel
+# sudo xbps-install -vy intel-ucode 
+# linuxKernel=$(xbps-query -l | grep linux- | awk 'NR==1 {print $2}')
+# sudo xbps-reconfigure -f $linuxKernel
 
 
